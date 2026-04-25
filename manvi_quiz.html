@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manvi Jain ka Quiz 💝</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: sans-serif; }
+  #app {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 30%, #e1bee7 70%, #d1c4e9 100%);
+  }
+  .card {
+    background: rgba(255,255,255,0.92);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 8px 40px rgba(180,80,140,0.18);
+    text-align: center;
+  }
+  .heart-anim {
+    font-size: 48px;
+    animation: heartbeat 1.2s ease-in-out infinite;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  .question-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #b03080;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .for-name {
+    font-size: 15px;
+    color: #9c27b0;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .question-text {
+    font-size: 22px;
+    font-weight: 500;
+    color: #4a1a4a;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+  }
+  .question-sub {
+    font-size: 14px;
+    color: #9c5c9c;
+    margin-bottom: 2rem;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 1.5rem;
+  }
+  .opt-btn {
+    border: none;
+    border-radius: 50px;
+    padding: 15px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s;
+  }
+  .opt-btn:active { transform: scale(0.97); }
+  .opt-correct {
+    background: linear-gradient(135deg, #e91e8c, #9c27b0);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(233,30,140,0.35);
+  }
+  .opt-correct:hover {
+    box-shadow: 0 6px 28px rgba(233,30,140,0.5);
+    transform: translateY(-1px);
+  }
+  .opt-wrong {
+    background: #f8f0fb;
+    color: #6a2a6a;
+    border: 1.5px solid #d8a0d8;
+  }
+  .opt-wrong:hover { background: #f0e0f8; transform: translateY(-1px); }
+  .hint-text {
+    font-size: 12px;
+    color: #b06090;
+    margin-top: 0.5rem;
+    min-height: 20px;
+  }
+  #celebrate {
+    display: none;
+    min-height: 100vh;
+    background: linear-gradient(135deg,#fce4ec,#f8bbd0,#e1bee7,#d1c4e9);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  .celebrate-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 28px;
+    padding: 3rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 12px 50px rgba(180,80,140,0.25);
+    text-align: center;
+  }
+  .confetti-row { font-size: 36px; margin-bottom: 1rem; animation: floatUp 2s ease-in-out infinite alternate; }
+  @keyframes floatUp { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
+  .big-heart { font-size: 72px; display: block; margin: 0.5rem auto 1rem; animation: heartbeat 0.8s ease-in-out infinite; }
+  .celebrate-hey { font-size: 16px; color: #9c5c9c; margin-bottom: 0.3rem; }
+  .celebrate-name {
+    font-size: 32px;
+    font-weight: 500;
+    background: linear-gradient(90deg, #e91e8c, #9c27b0, #e91e8c);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2s linear infinite;
+    margin-bottom: 0.5rem;
+  }
+  @keyframes shimmer { 0% { background-position: 0%; } 100% { background-position: 200%; } }
+  .celebrate-msg { font-size: 16px; color: #6a2a6a; line-height: 1.7; margin: 1rem 0; }
+  .celebrate-from { font-size: 14px; color: #b06090; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #e0b0d0; }
+  .flower-burst { font-size: 24px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 1rem 0; }
+  .flower-burst span { display: inline-block; animation: spin-float 3s ease-in-out infinite; animation-delay: calc(var(--i) * 0.3s); }
+  @keyframes spin-float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(20deg); } }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div class="card">
+    <span class="heart-anim">💝</span>
+    <div class="question-title">Best Friend Quiz</div>
+    <div class="for-name">🌸 Manvi Jain ke liye 🌸</div>
+    <div class="question-text">Tumhara sabse acha dost kaun hai?</div>
+    <div class="question-sub">Sochna mat — seedha dil se jawab do 💕</div>
+    <div class="options">
+      <button class="opt-btn opt-correct" id="btn-bharat" onclick="correctClick()">Bharat Panwar 💫</button>
+      <button class="opt-btn opt-wrong" id="btn-other" onclick="wrongClick()">Koi aur...</button>
+    </div>
+    <div class="hint-text" id="hint-text"></div>
+  </div>
+</div>
+
+<div id="celebrate" style="display:none; min-height:100vh; background:linear-gradient(135deg,#fce4ec,#f8bbd0,#e1bee7,#d1c4e9); align-items:center; justify-content:center; padding:2rem 1rem;">
+  <div class="celebrate-card">
+    <div class="confetti-row">🎊 🌸 🎉 🌺 🎊</div>
+    <span class="big-heart">💖</span>
+    <div class="celebrate-hey">Bilkul sahi, Manvi! 🥺</div>
+    <div class="celebrate-name">Bharat Panwar ✨</div>
+    <div class="celebrate-msg">
+      Tumhara sabse acha dost wahi hai —<br>
+      jo hamesha tumhare liye present hai,<br>
+      har pal, har mushkil mein 💕
+    </div>
+    <div class="flower-burst">
+      <span style="--i:0">🌸</span><span style="--i:1">🌺</span><span style="--i:2">🌼</span>
+      <span style="--i:3">🌷</span><span style="--i:4">💐</span><span style="--i:5">🌸</span><span style="--i:6">🌻</span>
+    </div>
+    <div class="celebrate-from">
+      — Sirf tumhara Bharat Panwar 🤍<br>
+      <span style="font-size:11px; color:#c090b0;">Manvi Jain ke liye dil se 💌</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const wrongLabels = [
+    "Koi aur... 🙄","Galat jawab! 🚫","Jhuthi Manvi! 😤","Soch ke bata! 🤔",
+    "Pakki jhuthi ho Manvi! 😠","Dimag kahan hai? 🤦","Ugh, seriously? 😒",
+    "Thoda aur soch... 💭","Haan haan, aur batao 🙃","Nahi nahi nahi! ❌",
+    "Manvi! Bewakoof mat bano! 😅","Phir se try karo! 🔄","Arey Manvi yaar! 😩",
+    "Galat! Bilkul galat! ❌","Mujhe pata tha! 😑"
+  ];
+  const hints = [
+    "Hint: Woh tumhare liye hamesha available hai 💬",
+    "Bharat ka wait kar raha hai... 👀",
+    "Sahi option woh pink wala hai 😏",
+    "Kya tumhe really pata nahi Manvi? 🥺",
+    "Ek baar Bharat Panwar pe click karo, please? 🙏",
+    "Woh roz tumhara sochta hai... 💭",
+    "Bharat = Manvi ka Best Friend 💖",
+    "Galat raaste pe ho, wapas aao! 🚦"
+  ];
+  let clickCount = 0;
+
+  function wrongClick() {
+    clickCount++;
+    const btn = document.getElementById('btn-other');
+    const hint = document.getElementById('hint-text');
+    btn.textContent = wrongLabels[Math.min(clickCount-1, wrongLabels.length-1)];
+    hint.textContent = hints[Math.min(clickCount-1, hints.length-1)];
+    btn.style.transform = 'translateX(-6px)';
+    setTimeout(() => btn.style.transform = 'translateX(6px)', 80);
+    setTimeout(() => btn.style.transform = 'translateX(-4px)', 160);
+    setTimeout(() => btn.style.transform = 'translateX(4px)', 240);
+    setTimeout(() => btn.style.transform = 'translateX(0)', 320);
+    const positions = ['translateY(8px)','translateY(-8px)','translateX(10px)','translateX(-10px)'];
+    const rand = positions[Math.floor(Math.random()*positions.length)];
+    setTimeout(() => { btn.style.transform = rand; }, 350);
+  }
+
+  function correctClick() {
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('celebrate').style.display = 'flex';
+  }
+</script>
+</body>
+</html>
